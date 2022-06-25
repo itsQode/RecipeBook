@@ -1,0 +1,21 @@
+<a
+style="cursor:pointer"
+class="list-group-item rounded"
+[routerLink]="[index]"
+routerLinkActive="active shadow"
+>
+  <div class="row">
+    <div class="col-8">
+      <h4>{{ recipe.name }}</h4>
+      <p>{{ recipe.description }}</p>
+    </div>
+    <span class="col-4">
+      <img
+        class="d-block w-100 h-100"
+        [src]="recipe.imagePath"
+        alt="{{ recipe.name }}"
+      />
+    </span>
+  </div>
+</a>
+<!-- *ngFor="let recipe of recipes;let i = index" -->

@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-success me-1" [disabled]="!recipeForm.valid">ذخیره</button>
+          <button type="button" class="btn btn-danger me-1" (click)="onCansel()">انصراف</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="name" class="form-label">عنوان</label>
+            <input type="text" id="name" class="form-control" formControlName="name"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="imagePath" class="form-label"> آدرس تصویر (URL)</label>
+            <input type="text" id="imagePath" class="form-control" formControlName="imagePath" #imagePath/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="">
+            <img [src]="imagePath.value" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="description" class="form-label">توضیحات محصول</label>
+            <textarea
+              type="text"
+              id="description"
+              class="form-control"
+              rows="6"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" formArrayName="ingredients">
+          <div class="row mt-2"
+          *ngFor="let ingredinetCtrl of controls;let i = index"
+          [formGroupName]="i"
+          >
+            <div class="col-8">
+              <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="col-2">
+              <input type="number" class="form-control" formControlName="amount">
+            </div>
+            <div class="col-2">
+              <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-12">
+          <button type="button" class="btn btn-success" (click)="onAddIngredients()">اضافه کردن مواد</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

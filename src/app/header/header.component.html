@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">کتاب آشپزی</a>
+    <button class="navbar-toggler" data-bs-target="#my-nav1" data-bs-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="my-nav1" class="collapse navbar-collapse">
+      <ul class="navbar-nav nav-tabs">
+        <li class="nav-item " *ngIf="isAuthenticated">
+          <a class="nav-link " [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active"
+            routerLink="/recipes">دستورالعمل‌ها</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link " [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active"
+            routerLink="/shopping-list">لیست خرید</a>
+        </li>
+        <li class="nav-item " *ngIf="!isAuthenticated">
+          <a class="nav-link " [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active"
+            routerLink="/auth">ورود به حساب</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item dropdown" *ngIf="isAuthenticated">
+          <a appDropdown class="nav-link dropdown-toggle" style="cursor: pointer;">مدیریت</a>
+          <ul class="dropdown-menu dropdown-menu-end bg-light">
+            <li><a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">ذخیره اطلاعات</a></li>
+            <li><a class="dropdown-item" style="cursor: pointer;" (click)="onFetchData()">دریافت اطلاعات</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a class="nav-link" style="cursor: pointer;" (click)="onLogout()">خروج</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

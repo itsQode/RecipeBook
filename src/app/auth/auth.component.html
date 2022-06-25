@@ -1,0 +1,57 @@
+<ng-template appPlaceholder></ng-template>
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <!-- <div class="alert alert-danger" *ngIf="error">
+      <p>{{ error }}</p>
+    </div> -->
+    <!-- <app-alert [message]="error" *ngIf="error"></app-alert> -->
+    <div class="text-center" style="margin-top: 30vh" *ngIf="isLoading">
+      <app-loadingspinner></app-loadingspinner>
+    </div>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!isLoading">
+      <div class="mb-3">
+        <label for="email" class="form-label">ایمیل</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          ngModel
+          name="email"
+          required
+          email
+        />
+      </div>
+      <div class="mb-3">
+        <div class="mb-3">
+          <label for="" class="form-label">رمز عبور</label>
+          <input
+            type="password"
+            name=""
+            id=""
+            class="form-control"
+            ngModel
+            name="password"
+            minlength="6"
+            required
+          />
+        </div>
+      </div>
+      <div class="d-grid d-md-block mb-3">
+        <button
+          type="submit"
+          class="btn btn-primary mb-3"
+          [disabled]="form.invalid"
+        >
+          {{ isLogingMode ? "ورود به حساب" : "ایجاد حساب" }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary float-md-end"
+          (click)="onSwitchMode()"
+        >
+          {{ isLogingMode ? "ایجاد حساب کاربری؟" : "ورود به حساب؟" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

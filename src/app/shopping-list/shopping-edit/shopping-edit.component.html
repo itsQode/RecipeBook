@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-12">
+    <form (ngSubmit)="onAddItem(f)" #f="ngForm">
+      <div class="row mb-3">
+        <div class="col-sm-5">
+          <label class="form-label" for="name">عنوان</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            ngModel
+            name="name"
+            required
+            #name="ngModel"
+          />
+        </div>
+        <div class="col-sm-2">
+          <label class="form-label" for="amount">تعداد</label>
+          <input
+            id="amount"
+            class="form-control"
+            type="number"
+            placeholder="0"
+            ngModel
+            name="amount"
+            required
+            [pattern]="'^[1-9]+[0-9]*$'"
+            #amount="ngModel"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button
+            class="me-1 btn btn-success"
+            type="submit"
+            [disabled]="!f.valid"
+          >
+            {{ editMode ? "بروز رسانی" : "ثبت کردن" }}
+          </button>
+          <button
+            class="me-1 btn btn-danger"
+            type="button"
+            (click)="onDelete()"
+            *ngIf="editMode"
+          >
+            حذف از لیست
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClear()"
+            *ngIf="name.value !== '' || amount.value > 0"
+            >
+            پاک کردن
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
